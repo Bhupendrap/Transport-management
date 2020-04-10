@@ -1,0 +1,62 @@
+<section>
+  <div class="card">
+    <div class="container">
+      <form *ngIf="!booked">
+        <div class="container-form">
+          <h2>Pick Your Ride</h2>
+          <label for="pick"><b>Pick-up Point</b></label>
+          <input type="text" [(ngModel)]="pick" name="pick" placeholder="Pick-up location" required>
+
+          <label for="destination"><b>Destination</b></label>
+          <input type="text" [(ngModel)]="destination" placeholder="Destination" name="destination" required>
+          <div class="container error" *ngIf="!(pick && destination)">
+            <p>Kindly fill Pick up and Destination</p>
+          </div>
+          <button type="submit" (click)="onBooked()" [disabled]="!(pick && destination)" class="registerbtn">Book Ride</button>
+        </div>
+        <div class="container signin">
+          <p>If you want to scedule new ride? <a href="">New Ride</a>.</p>
+        </div>
+      </form>
+    </div>
+    <div class="container" *ngIf="booked">
+      <h2 class="success">Successfully Booked...Go to availibility and select your rides</h2>
+    </div>
+  </div>
+</section>
+<hr>
+<section>
+  <div class="card" style="width: 90%; margin-left: 25px;">
+    <div class="container">
+        <div class="container-form">
+          <h2> Available Rides </h2><span>Employee ID: {{ridedatas[0]?.id}}</span>
+          <p>Filter: <a class="pl-10" (click)="onFilter('all')">All</a>
+            <a class="pl-10" (click)="onFilter('bike')">Bikes</a>
+            <a class="pl-10" (click)="onFilter('car')">Cars</a></p>
+            <button type="submit" (click)="onBack()" class="backbtn">Back to New Ride</button>
+          <hr>
+          <div *ngIf="!isSelected">
+            <div class="card" *ngFor="let ride of ridedatas">
+                <div class="container">
+                  <p *ngIf="ride.type == 'bike'">Vehical Type: {{ride.type}} <img src="../../assets/bike.png"></p>
+                  <p *ngIf="ride.type == 'car'">Vehical Type: {{ride.type}} <img src="../../assets/car.png"></p>
+                  <p>Vehical No: {{ride.no}}</p>
+                  <p>Time :{{ride.meetingtime}}</p>
+                  <button type="submit" (click)="onSelected(ride.no,ride.type)" class="registerbtn">Select</button>
+                </div>
+            </div>
+          </div>
+          <ng-container *ngIf="isSelected">
+            <div class="card">
+              <div class="container">
+                <p *ngIf="selectedType == 'bike'">Vehical Type: {{selectedType}} <img src="../../assets/bike.png"></p>
+                <p *ngIf="selectedType == 'car'">Vehical Type: {{selectedType}} <img src="../../assets/car.png"></p>
+                <p>Vehical No: {{selectedNo}}</p>
+                <p class="success">Your Ride is on the Way..</p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+    </div>
+  </div>
+</section>

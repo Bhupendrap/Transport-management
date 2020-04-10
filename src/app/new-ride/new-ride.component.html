@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="container">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="container-form">
+        <h2>Employee New Ride</h2>
+        <p>Please fill in this form with Unique Employee ID.</p>
+
+        <hr>
+        <label for="id"><b>Employee ID </b></label>
+        <input type="text" ngModel placeholder="Enter Employee ID" name="id" required>
+
+        <div>
+          <label for="type"><b>Vehicle Type </b></label>
+          <ul class="list-group">
+                <li class="list-group-item"  *ngFor="let item of itemList">
+                  <input type="radio"  ngModel name="type" value="{{item.value}}"/>
+                  {{item.name}}
+                </li>
+          </ul>
+        </div>
+
+        <label for="no"><b>Vehicle No</b></label>
+        <input type="text" ngModel placeholder="Enter Vehicle No" name="no" required>
+
+        <label for="seats"><b>Vacant Seats:</b></label>
+        <select id="seats">
+            <option *ngFor="let seat of seats">{{seat.name}}</option>
+        </select>
+
+        <label for="psw-repeat"><b>Time</b></label>
+        <input  ngModel type="datetime-local" id="meeting-time"
+          name="meetingtime" value="2018-06-12T19:30"
+          min="2020-04-11T00:00" max="2020-04-12T00:00">
+
+        <label for="pick"><b>Pick-up Point</b></label>
+        <input type="text" ngModel placeholder="Pick-up location" name="pick" required>
+
+        <label for="destination"><b>Destination</b></label>
+        <input type="text" ngModel placeholder="Destination" name="destination" required>
+        <hr>
+        <p *ngIf="f.invalid && isSubmited" class="error"> Kindly fill all the fields correctly!! </p>
+        <p>If you already booked..<a href="book">Pick Up Ride</a>.</p>
+        <button type="submit" class="registerbtn">New Ride</button>
+      </div>
+    </form>
+
+  </div>
+</div>

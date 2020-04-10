@@ -1,0 +1,21 @@
+.pl-10 {
+  padding-left: 10px;
+}
+
+.backbtn {
+  background-color: rgb(41, 39, 37);
+  float: right;
+  color: white;
+  padding: 16px 20px;
+  margin: -120px 0;
+  border: none;
+  cursor: pointer;
+  width: 25%;
+  opacity: 0.9;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.success {
+  color: chartreuse;
+}
